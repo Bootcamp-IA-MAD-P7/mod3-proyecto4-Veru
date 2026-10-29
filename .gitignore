@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Model weights / runs
+models/*.pt
+models/*.onnx
+runs/
+notebooks/runs/
+
+# Data local (no versionar)
+data/uploads/*
+data/crops/*
+data/db/*
+data/samples/*
+!data/**/.gitkeep
+
+# Env / secrets
+.env
+.env.*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
