@@ -68,11 +68,25 @@ Official channels:
 
 PeerTube search (demo source): <https://sepiasearch.org/search?query=proton%20mail>
 
-Example workflow (requires `yt-dlp` and `ffmpeg`):
+Automated workflow (requires `yt-dlp` and `ffmpeg`):
+
+```bash
+python -m pip install yt-dlp
+winget install Gyan.FFmpeg
+```
+
+Copy `data/raw/video_urls.example.csv` to `data/raw/video_urls.csv`, add your URLs, then:
+
+```bash
+python scripts/extract_frames.py --interval 5
+```
+
+The script downloads each video, extracts one frame every `--interval` seconds to `data/raw/frames/`, skips exact duplicates by SHA-256, appends provenance to `metadata.csv`, and deletes the video unless you pass `--keep-video`.
+
+Manual fallback:
 
 ```bash
 yt-dlp -f "bv*[height<=1080]+ba/b" -o "data/raw/video_%(id)s.%(ext)s" "<VIDEO_URL>"
-mkdir -p data/raw/frames
 ffmpeg -i data/raw/video_XXXX.mp4 -vf "fps=1/5" data/raw/frames/frame_%04d.png
 ```
 
