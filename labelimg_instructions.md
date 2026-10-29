@@ -28,11 +28,13 @@ Originals in `data/raw/` are never modified.
 labelImg data/labeled/images data/labeled/classes.txt data/labeled/labels
 ```
 
-Configure before labeling:
+Configure before labeling. There is **no “Configura” button** and no **Format** menu:
 
-1. **Format → YOLO** (toolbar button must show `YOLO`, not `PascalVOC`).
-2. **View → Auto Save mode** (saves when moving to the next image).
-3. **View → Single class mode** (always uses `proton_logo`).
+1. In the **left toolbar**, find the button whose text is `PascalVOC`. Click it once; it becomes `YOLO` (the next click would be `CreateML`, and another returns to `PascalVOC`). The same toggle is in **File → PascalVOC**.
+2. Menu **View → Auto Save mode** (leave it checked).
+3. Menu **View → Single class mode** (leave it checked).
+
+If you do not see the menu or left toolbar, maximize the window. If the toolbar is still missing, right-click on the top bar area and enable **Tools**.
 
 ## 4. Labeling rules
 
@@ -55,7 +57,9 @@ Configure before labeling:
 | `Ctrl+S` | Save |
 | `Del` | Delete selected box |
 | `Ctrl+Z` | Undo |
-| `Ctrl+=` | Fit window |
+| `Ctrl+F` | Fit window |
+| `Space` | Verify image |
+| `Ctrl+R` | Change save dir |
 
 ## 6. Verify
 
