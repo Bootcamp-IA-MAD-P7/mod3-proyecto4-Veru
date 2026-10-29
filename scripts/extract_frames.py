@@ -51,7 +51,7 @@ def save_metadata(path, rows):
 
 
 def sanitize(text, limit=60):
-    cleaned = re.sub(r"[^A-Za-z0-9_.-]+", "_", text).strip("_")
+    cleaned = re.sub(r"[^A-Za-z0-9_.-]+", "_", text).strip("._-")
     return (cleaned or "video")[:limit]
 
 
