@@ -123,7 +123,7 @@ LogoExposure-Tracker/
 ├── docs/
 ├── models/
 ├── notebooks/
-├── scripts/{collect_images.py,extract_frames.py,train,process}
+├── scripts/{collect_images.py,extract_frames.py,qa_images.py,train,process}
 ├── src/{detect,video,db}
 ├── Dockerfile
 ├── docker-compose.yml

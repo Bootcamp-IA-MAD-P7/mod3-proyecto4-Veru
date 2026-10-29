@@ -6,12 +6,12 @@
 ## Epics
 
 ### EPIC 1: SETUP & STRUCTURE
-- [ ] #1 [SETUP] Init repo & dev branch
-- [ ] #2 [SETUP] Create folder structure
-- [ ] #3 [DOCS] README + SPECS
+- [x] #1 [SETUP] Init repo & dev branch
+- [x] #2 [SETUP] Create folder structure
+- [x] #3 [DOCS] README + SPECS
 
 ### EPIC 2: DATASET & LABELING
-- [ ] #4 [DATA] Collect Proton logo images (70-90)
+- [x] #4 [DATA] Collect Proton logo images (70-90)
 - [ ] #5 [DATA] Label with LabelImg (proton_logo, YOLO)
 - [ ] #6 [DATA] Split + data.yaml
 

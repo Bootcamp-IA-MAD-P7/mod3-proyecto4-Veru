@@ -128,3 +128,12 @@ Set `notes=negative` in `negatives_urls.csv` so the metadata records their role.
 - Logo box clearly visible; avoid heavily blurred or occluded logos.
 - Provenance recorded in `data/raw/metadata.csv` (`source`, `url`, `license`).
 - Raw images are ignored by Git; only metadata and templates are versioned.
+
+Run the image QA and generate review contact sheets:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/qa_images.py
+```
+
+Outputs `data/raw/qa/contact_*.jpg` and `qa_report.csv` with dimensions, sharpness and near-duplicate groups.
