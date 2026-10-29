@@ -119,11 +119,11 @@ This directly answers *"evaluate where to direct efforts"* by looking at existin
 LogoExposure-Tracker/
 ├── app/
 ├── assets/
-├── data/{raw,uploads,crops,db,samples}
+├── data/{raw,labeled,uploads,crops,db,samples}
 ├── docs/
 ├── models/
 ├── notebooks/
-├── scripts/{collect_images.py,extract_frames.py,qa_images.py,train,process}
+├── scripts/{collect_images.py,extract_frames.py,qa_images.py,prepare_labeling.py,check_labels.py,train,process}
 ├── src/{detect,video,db}
 ├── Dockerfile
 ├── docker-compose.yml
@@ -137,6 +137,11 @@ LogoExposure-Tracker/
 2. Run `python scripts/collect_images.py`.
 3. Review downloads in `data/raw/`; duplicates are skipped via SHA-256.
 4. `data/raw/metadata.csv` keeps provenance; raw images are not committed to Git.
+
+### Labeling (#5)
+1. `python scripts/prepare_labeling.py` builds `data/labeled/images/` + `manifest.csv`.
+2. Launch `labelImg data/labeled/images data/labeled/classes.txt data/labeled/labels`.
+3. Follow [labelimg_instructions.md](labelimg_instructions.md); verify with `python scripts/check_labels.py --fill-empty`.
 
 ## 9. Philosophy
 - **Local-first** | **Open-Source** | **Privacy by Design** | **Earned Media Focus** | **Faithful to assignment**

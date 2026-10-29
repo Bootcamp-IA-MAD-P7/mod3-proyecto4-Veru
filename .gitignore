@@ -19,6 +19,7 @@ data/crops/*
 data/db/*
 data/samples/*
 data/raw/*
+data/labeled/images/*
 !data/**/.gitkeep
 !data/raw/metadata.csv
 !data/raw/urls.example.csv
