@@ -12,7 +12,7 @@
 
 ### EPIC 2: DATASET & LABELING
 - [x] #4 [DATA] Collect Proton logo images (70-90)
-- [ ] #5 [DATA] Label with LabelImg (proton_logo, YOLO)
+- [x] #5 [DATA] Label with LabelImg (proton_logo, YOLO)
 - [ ] #6 [DATA] Split + data.yaml
 
 ### EPIC 3: MODEL & TRAINING
