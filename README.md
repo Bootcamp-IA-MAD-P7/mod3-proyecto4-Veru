@@ -119,11 +119,11 @@ This directly answers *"evaluate where to direct efforts"* by looking at existin
 LogoExposure-Tracker/
 ├── app/
 ├── assets/
-├── data/{uploads,crops,db,samples}
+├── data/{raw,uploads,crops,db,samples}
 ├── docs/
 ├── models/
 ├── notebooks/
-├── scripts/{train,process}
+├── scripts/{collect_images.py,train,process}
 ├── src/{detect,video,db}
 ├── Dockerfile
 ├── docker-compose.yml
@@ -131,6 +131,12 @@ LogoExposure-Tracker/
 ├── README.md
 └── requirements.txt
 ```
+
+### Collecting images (#4)
+1. Copy `data/raw/urls.example.csv` to `data/raw/urls.csv` and fill `url,source,license,notes`.
+2. Run `python scripts/collect_images.py`.
+3. Review downloads in `data/raw/`; duplicates are skipped via SHA-256.
+4. `data/raw/metadata.csv` keeps provenance; raw images are not committed to Git.
 
 ## 9. Philosophy
 - **Local-first** | **Open-Source** | **Privacy by Design** | **Earned Media Focus** | **Faithful to assignment**

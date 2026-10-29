@@ -18,7 +18,10 @@ data/uploads/*
 data/crops/*
 data/db/*
 data/samples/*
+data/raw/*
 !data/**/.gitkeep
+!data/raw/metadata.csv
+!data/raw/urls.example.csv
 
 # Env / secrets
 .env
