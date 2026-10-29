@@ -3,11 +3,16 @@ import csv
 import hashlib
 import mimetypes
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
 FIELDS = ["file", "source", "url", "license", "notes", "sha256"]
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+)
 MAGIC = {
     b"\xff\xd8\xff": ".jpg",
     b"\x89PNG\r\n\x1a\n": ".png",
@@ -61,14 +66,22 @@ def next_index(out_dir):
     return max(indexes, default=0) + 1
 
 
-def download(url):
-    request = urllib.request.Request(
-        url,
-        headers={"User-Agent": "Mozilla/5.0 (compatible; LogoExposureTracker/1.0)"},
-    )
+def fetch(url):
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(request, timeout=30) as response:
-        data = response.read()
-        content_type = response.headers.get("Content-Type", "")
+        return response.read(), response.headers.get("Content-Type", "")
+
+
+def download(url, retries):
+    for attempt in range(retries + 1):
+        try:
+            data, content_type = fetch(url)
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 503) or attempt == retries:
+                raise
+            time.sleep(5 * (attempt + 1))
+
     if content_type and not content_type.startswith("image/"):
         raise ValueError(f"not an image (Content-Type: {content_type})")
     ext = (
@@ -86,6 +99,8 @@ def main():
     parser.add_argument("--input", default="data/raw/urls.csv")
     parser.add_argument("--out", default="data/raw")
     parser.add_argument("--metadata", default="data/raw/metadata.csv")
+    parser.add_argument("--delay", type=float, default=2.0)
+    parser.add_argument("--retries", type=int, default=3)
     args = parser.parse_args()
 
     input_path = Path(args.input)
@@ -109,14 +124,16 @@ def main():
             if not url:
                 continue
             try:
-                data, ext = download(url)
+                data, ext = download(url, args.retries)
             except (urllib.error.URLError, ValueError, TimeoutError) as exc:
                 print(f"[skip] line {line}: {url} -> {exc}")
+                time.sleep(args.delay)
                 continue
 
             digest = sha256(data)
             if digest in hashes:
                 print(f"[dup] line {line}: {url}")
+                time.sleep(args.delay)
                 continue
 
             filename = f"proton_{index:03d}{ext}"
@@ -134,6 +151,7 @@ def main():
             hashes.add(digest)
             index += 1
             print(f"[ok] {filename} <- {url}")
+            time.sleep(args.delay)
 
     save_metadata(metadata_path, rows)
     print(f"Saved {len(rows)} records to {metadata_path}")

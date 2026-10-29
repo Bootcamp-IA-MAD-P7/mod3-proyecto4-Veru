@@ -144,5 +144,6 @@ LogoExposure-Tracker/
 ## 10. Documentation
 - [`docs/SPECS.md`](docs/SPECS.md)
 - [`docs/ISSUES_DESIGN.md`](docs/ISSUES_DESIGN.md)
+- [`docs/DATASET_SOURCES.md`](docs/DATASET_SOURCES.md)
 
 **Project:** `LogoExposure-Tracker` | **Target:** `Proton` | **Class:** `proton_logo` | **Focus:** *Earned Media | Share of Screen | Video Brand Exposure*
