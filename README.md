@@ -119,11 +119,11 @@ This directly answers *"evaluate where to direct efforts"* by looking at existin
 LogoExposure-Tracker/
 ├── app/
 ├── assets/
-├── data/{raw,labeled,uploads,crops,db,samples}
+├── data/{raw,labeled,dataset,uploads,crops,db,samples}
 ├── docs/
 ├── models/
 ├── notebooks/
-├── scripts/{collect_images.py,extract_frames.py,qa_images.py,prepare_labeling.py,check_labels.py,train,process}
+├── scripts/{collect_images.py,extract_frames.py,qa_images.py,prepare_labeling.py,check_labels.py,split_dataset.py,train,process}
 ├── src/{detect,video,db}
 ├── Dockerfile
 ├── docker-compose.yml
@@ -142,6 +142,16 @@ LogoExposure-Tracker/
 1. `python scripts/prepare_labeling.py` builds `data/labeled/images/` + `manifest.csv`.
 2. Launch `labelImg data/labeled/images data/labeled/classes.txt data/labeled/labels`.
 3. Follow [labelimg_instructions.md](labelimg_instructions.md); verify with `python scripts/check_labels.py --fill-empty`.
+
+### Split (#6)
+```bash
+python scripts/split_dataset.py
+```
+
+Creates `data/dataset/images/{train,val,test}`, `data/dataset/labels/{train,val,test}`,
+`data/dataset/data.yaml` (`nc: 1`, `names: ['proton_logo']`) and `split.csv`.
+The split is stratified by positive/background with seed 42. Run training from the
+repo root so the relative `path: data/dataset` in `data.yaml` resolves correctly.
 
 ## 9. Philosophy
 - **Local-first** | **Open-Source** | **Privacy by Design** | **Earned Media Focus** | **Faithful to assignment**
