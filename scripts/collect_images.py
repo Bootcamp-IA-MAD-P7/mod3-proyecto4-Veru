@@ -55,10 +55,10 @@ def save_metadata(path, rows):
         writer.writerows(rows)
 
 
-def next_index(out_dir):
+def next_index(out_dir, prefix):
     indexes = []
     for item in out_dir.iterdir():
-        if not item.is_file() or not item.stem.startswith("proton_"):
+        if not item.is_file() or not item.stem.startswith(f"{prefix}_"):
             continue
         suffix = item.stem.split("_", 1)[1]
         if suffix.isdigit():
@@ -94,11 +94,12 @@ def download(url, retries):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Download Proton logo images from a CSV list."
+        description="Download images from a CSV list of URLs."
     )
     parser.add_argument("--input", default="data/raw/urls.csv")
     parser.add_argument("--out", default="data/raw")
     parser.add_argument("--metadata", default="data/raw/metadata.csv")
+    parser.add_argument("--prefix", default="proton")
     parser.add_argument("--delay", type=float, default=2.0)
     parser.add_argument("--retries", type=int, default=3)
     args = parser.parse_args()
@@ -112,7 +113,7 @@ def main():
 
     out_dir.mkdir(parents=True, exist_ok=True)
     rows, hashes = load_metadata(metadata_path)
-    index = next_index(out_dir)
+    index = next_index(out_dir, args.prefix)
 
     with input_path.open(newline="", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
@@ -136,11 +137,12 @@ def main():
                 time.sleep(args.delay)
                 continue
 
-            filename = f"proton_{index:03d}{ext}"
-            (out_dir / filename).write_bytes(data)
+            filename = f"{args.prefix}_{index:03d}{ext}"
+            file_path = out_dir / filename
+            file_path.write_bytes(data)
             rows.append(
                 {
-                    "file": filename,
+                    "file": file_path.relative_to(metadata_path.parent).as_posix(),
                     "source": (entry.get("source") or "").strip(),
                     "url": url,
                     "license": (entry.get("license") or "").strip(),

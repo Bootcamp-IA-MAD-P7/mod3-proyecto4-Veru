@@ -83,6 +83,8 @@ python scripts/extract_frames.py --interval 5
 
 The script downloads each video, extracts one frame every `--interval` seconds to `data/raw/frames/`, skips exact duplicates by SHA-256, appends provenance to `metadata.csv`, and deletes the video unless you pass `--keep-video`.
 
+YouTube often returns *"Sign in to confirm you're not a bot"*. Prefer PeerTube URLs (the example file includes two), or pass cookies to `yt-dlp` with `--cookies-from-browser`.
+
 Manual fallback:
 
 ```bash
@@ -100,7 +102,13 @@ Add ~10 negatives to reduce false positives. Do **not** label them; keep them as
 - Desktop/terminal/wallpaper photos with no Proton UI.
 - Frames from unrelated YouTube/PeerTube videos.
 
-Save in `data/raw/negatives/` and set `notes=negative` in the metadata.
+Save in `data/raw/negatives/` with:
+
+```bash
+python scripts/collect_images.py --input data/raw/negatives_urls.csv --out data/raw/negatives --prefix negative
+```
+
+Set `notes=negative` in `negatives_urls.csv` so the metadata records their role.
 
 ## 6. Target composition (70-90 images)
 

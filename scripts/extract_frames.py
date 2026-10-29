@@ -170,7 +170,7 @@ def main():
                 notes = (entry.get("notes") or "").strip()
                 rows.append(
                     {
-                        "file": str(frame.relative_to(metadata_path.parent)),
+                        "file": frame.relative_to(metadata_path.parent).as_posix(),
                         "source": f"video:{(entry.get('source') or 'video').strip()}",
                         "url": url,
                         "license": (entry.get("license") or "").strip(),
