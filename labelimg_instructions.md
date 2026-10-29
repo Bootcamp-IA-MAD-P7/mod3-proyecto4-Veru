@@ -36,6 +36,10 @@ Configure before labeling. There is **no “Configura” button** and no **Forma
 
 If you do not see the menu or left toolbar, maximize the window. If the toolbar is still missing, right-click on the top bar area and enable **Tools**.
 
+> **Important:** when the label dialog opens, type or select `proton_logo` **before** pressing OK/Enter. Pressing OK with an empty field crashes LabelImg 1.8.6 (assertion error in `set_last_label`).
+
+To draw a box: press `W`, then **press and hold** the left mouse button at one corner of the logo, drag to the opposite corner and release. A single click without dragging does not create a box.
+
 ## 4. Labeling rules
 
 - One **tight** box per visible Proton logo instance.
