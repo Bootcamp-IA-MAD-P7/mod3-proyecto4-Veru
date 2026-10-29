@@ -20,6 +20,8 @@ data/db/*
 data/samples/*
 data/raw/*
 data/labeled/images/*
+data/dataset/images/*
+data/dataset/labels/*
 !data/**/.gitkeep
 !data/raw/metadata.csv
 !data/raw/urls.example.csv
