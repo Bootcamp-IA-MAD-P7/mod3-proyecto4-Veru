@@ -82,3 +82,23 @@ missing labels, and orphan label files.
 
 Then commit `data/labeled/labels/`, `classes.txt`, and `manifest.csv`. Images stay
 ignored by Git.
+
+## 7. Troubleshooting
+
+If LabelImg closes while drawing with:
+
+```text
+TypeError: arguments did not match any overloaded call:
+drawLine(...): argument 1 has unexpected type 'float'
+```
+
+run the compatibility patch and restart LabelImg:
+
+```bash
+python scripts/fix_labelimg.py
+```
+
+This casts QPainter coordinates to `int` for PyQt5 5.15.11 on Python 3.14.
+
+If it closes after accepting the label dialog, you pressed OK with an empty
+label. Type `proton_logo` first.
