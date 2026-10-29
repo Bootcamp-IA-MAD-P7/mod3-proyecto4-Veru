@@ -68,6 +68,42 @@ Build a local PoC to detect Proton logo (`proton_logo`) in videos, compute scree
 - validate on test set
 
 ## 7. Video processing
-1. cv2.VideoCapture
-2. get fps/frame_count/duration
-3
+1. `cv2.VideoCapture` to open the video
+2. Read `fps`, `frame_count` and compute `duration = frame_count / fps`
+3. Iterate frames sequentially (`while cap.read()`)
+4. Run YOLOv8n inference per frame (conf >= 0.5, class `proton_logo`)
+5. Count frames with at least one detection -> `frames_with_logo`
+6. Draw bbox + `proton_logo` + confidence and keep visual evidence
+7. Save the crop of each detection in `data/crops/`
+8. Compute `logo_time_sec = frames_with_logo / fps`
+9. Compute `percentage = (frames_with_logo / total_frames) * 100`
+10. Persist video metrics + detections in SQLite
+
+## 8. Database
+- File: `data/db/logotracker.db`
+- Tables: `videos` and `detections` (schema in README section 7)
+- `detections.video_id` references `videos.id`
+- One `videos` row per analyzed video; N `detections` rows for frames with logo
+
+## 9. UI
+- Local app (Streamlit or NiceGUI)
+- Upload `.mp4`/`.webm`/`.mkv` -> saved in `data/uploads/`
+- Button to run analysis with progress state
+- Report: duration, `logo_time_sec`, `percentage`, confidence and crop gallery
+- History: list previous analyses from SQLite
+
+## 10. Deliverables
+- `data.yaml` + labeled dataset (70-90 images, YOLO format)
+- `models/best.pt` (fine-tuned YOLOv8n)
+- Modular source (`src/detect`, `src/video`, `src/db`) + scripts
+- SQLite DB populated (`videos` + `detections`)
+- Demo video and screenshots in `assets/`
+- README with setup, training and run instructions
+- `requirements.txt` + Docker for reproducible run
+
+## 11. Acceptance criteria (MVP)
+- Logo detected with bbox, class name and confidence
+- `logo_time_sec` and `percentage` correct for a test video
+- Crops saved and linked in the DB
+- Report and history visible in the local UI
+- Full pipeline runs locally following the README steps
