@@ -19,8 +19,8 @@
 
 ### EPIC 3: MODEL & TRAINING
 - [x] #7 [MODEL] Env + yolov8n.pt
-- [ ] #8 [MODEL] Fine-tune YOLOv8n (50-70)
-- [ ] #9 [MODEL] Validate & copy best.pt to models/
+- [x] #8 [MODEL] Fine-tune YOLOv8n (50-70)
+- [x] #9 [MODEL] Validate & copy best.pt to models/
 
 ### EPIC 4: VIDEO + METRICS + DB
 - [ ] #10 [VIDEO] process_video.py core

@@ -48,7 +48,7 @@ This directly answers *"evaluate where to direct efforts"* by looking at existin
 ## 4. Objectives
 
 ### Main (Essential + Medium)
-- [ ] Train model by fine-tuning a pretrained model to detect `proton_logo`
+- [x] Train model by fine-tuning a pretrained model to detect `proton_logo`
 - [ ] Localize Proton logo with bounding box in images/videos
 - [ ] Analyze video frame by frame to detect the category
 - [ ] Calculate screen time in seconds using FPS
@@ -166,6 +166,26 @@ Checks Python/Ultralytics/PyTorch/OpenCV versions, validates `data/dataset/data.
 and downloads `models/yolov8n.pt` if missing (weights are gitignored). Add `--smoke`
 to run one inference with the base model, or `--no-download` to fail instead of
 downloading.
+
+### Training (#8)
+```bash
+python scripts/train/train.py --epochs 60
+```
+
+Fine-tunes `models/yolov8n.pt` on `data/dataset/data.yaml` (imgsz 640, batch 8, CPU)
+and writes everything to `runs/train/proton/` (`weights/best.pt`, `results.csv`,
+curves and confusion matrix). The reference run (60 epochs, seed 42) reached
+**mAP50 0.835 / mAP50-95 0.502** on validation (best epoch 48).
+
+### Validation (#9)
+```bash
+python scripts/train/validate.py
+```
+
+Validates `runs/train/proton/weights/best.pt` on the **test** split and copies it
+to `models/best.pt` (gitignored). Reference test result: **P 0.989 / R 0.833 /
+mAP50 0.972 / mAP50-95 0.549**. Use `--no-copy` to only validate or `--dry-run`
+to check paths without running inference.
 
 ## 9. Testing
 Tests are orchestrated through the Makefile and run after each epic:
