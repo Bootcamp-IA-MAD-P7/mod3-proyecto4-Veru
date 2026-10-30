@@ -1,7 +1,9 @@
 # Issues Design for GitHub Projects + Roadmap
 
 ## Labels
-`setup`, `data`, `model`, `video`, `db`, `ui`, `docker`, `docs`, `bonus`, `priority:P0`, `priority:P1`, `priority:P2`
+`setup`, `data`, `model`, `video`, `db`, `ui`, `docker`, `docs`, `test`, `bonus`, `priority:P0`, `priority:P1`, `priority:P2`
+
+**Rule:** each epic closes with `make check` green and new tests marked with its `epicN` marker.
 
 ## Epics
 
