@@ -177,6 +177,16 @@ and writes everything to `runs/train/proton/` (`weights/best.pt`, `results.csv`,
 curves and confusion matrix). The reference run (60 epochs, seed 42) reached
 **mAP50 0.835 / mAP50-95 0.502** on validation (best epoch 48).
 
+### Validation (#9)
+```bash
+python scripts/train/validate.py
+```
+
+Validates `runs/train/proton/weights/best.pt` on the **test** split and copies it
+to `models/best.pt` (gitignored). Reference test result: **P 0.989 / R 0.833 /
+mAP50 0.972 / mAP50-95 0.549**. Use `--no-copy` to only validate or `--dry-run`
+to check paths without running inference.
+
 ## 9. Testing
 Tests are orchestrated through the Makefile and run after each epic:
 
