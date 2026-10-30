@@ -10,6 +10,7 @@
 - Rama de desarrollo: `dev`. Rama final: `main`.
 - **No commitear directamente en `dev` ni en `main`.**
 - Excepción aceptada: el issue #5 ya se inició en `dev`; terminarlo allí.
+- Excepción aceptada: los issues #7-#9 (modelo y entrenamiento) comparten la rama `model-training`.
 - Para cada issue nuevo:
   1. `git switch dev && git pull origin dev`
   2. `git switch -c issue/NN-slug` (ej. `issue/06-split-dataset`)
@@ -21,7 +22,7 @@
 ## Issues
 - Fuente de verdad: `docs/ISSUES_DESIGN.md`.
 - Marcar `- [x]` solo cuando el issue esté realmente terminado y verificado.
-- No adelantar issues ni mezclar alcance de varios issues en una rama.
+- No adelantar issues ni mezclar alcance de varios issues en una rama, salvo #7-#9 en `model-training`.
 
 ## Datos y artefactos
 - No versionar imágenes crudas, crops, vídeos, DB ni pesos (`*.pt`, `*.onnx`).

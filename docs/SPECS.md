@@ -62,6 +62,7 @@ Build a local PoC to detect Proton logo (`proton_logo`) in videos, compute scree
 - data.yaml: nc:1, names:['proton_logo']
 
 ## 6. Training
+- setup: `python scripts/train/setup_env.py` checks the environment, downloads `models/yolov8n.pt` and validates `data.yaml`
 - base: yolov8n.pt
 - epochs: 50-70
 - imgsz: 640
