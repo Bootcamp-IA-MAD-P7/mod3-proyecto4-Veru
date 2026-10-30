@@ -6,6 +6,7 @@ venv/
 env/
 .ipynb_checkpoints/
 *.egg-info/
+.pytest_cache/
 
 # Model weights / runs
 models/*.pt
