@@ -63,9 +63,12 @@ Build a local PoC to detect Proton logo (`proton_logo`) in videos, compute scree
 
 ## 6. Training
 - setup: `python scripts/train/setup_env.py` checks the environment, downloads `models/yolov8n.pt` and validates `data.yaml`
+- run: `python scripts/train/train.py --epochs 60`
 - base: yolov8n.pt
 - epochs: 50-70
 - imgsz: 640
+- outputs: `runs/train/proton/` (`weights/best.pt`, `results.csv`, plots)
+- reference run: 60 epochs, val mAP50 0.835, mAP50-95 0.502 (best epoch 48)
 - copy best.pt -> models/best.pt
 - validate on test set
 
