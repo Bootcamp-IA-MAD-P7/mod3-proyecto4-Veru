@@ -16,7 +16,7 @@
 - [x] #6 [DATA] Split + data.yaml
 
 ### EPIC 3: MODEL & TRAINING
-- [ ] #7 [MODEL] Env + yolov8n.pt
+- [x] #7 [MODEL] Env + yolov8n.pt
 - [ ] #8 [MODEL] Fine-tune YOLOv8n (50-70)
 - [ ] #9 [MODEL] Validate & copy best.pt to models/
 

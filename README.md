@@ -153,6 +153,17 @@ Creates `data/dataset/images/{train,val,test}`, `data/dataset/labels/{train,val,
 The split is stratified by positive/background with seed 42. Run training from the
 repo root so the relative `path: data/dataset` in `data.yaml` resolves correctly.
 
+### Training environment (#7)
+```bash
+python -m pip install -r requirements.txt
+python scripts/train/setup_env.py
+```
+
+Checks Python/Ultralytics/PyTorch/OpenCV versions, validates `data/dataset/data.yaml`
+and downloads `models/yolov8n.pt` if missing (weights are gitignored). Add `--smoke`
+to run one inference with the base model, or `--no-download` to fail instead of
+downloading.
+
 ## 9. Philosophy
 - **Local-first** | **Open-Source** | **Privacy by Design** | **Earned Media Focus** | **Faithful to assignment**
 
