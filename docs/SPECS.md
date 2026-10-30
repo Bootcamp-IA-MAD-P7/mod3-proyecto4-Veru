@@ -52,6 +52,7 @@ Build a local PoC to detect Proton logo (`proton_logo`) in videos, compute scree
 | RNF-05 | Efficient (YOLOv8n) |
 | RNF-06 | Clean modular code |
 | RNF-07 | Clean Git history |
+| RNF-08 | Automated tests (pytest) run via `make test` |
 
 ## 5. Dataset with LabelImg
 - Goal: 70-90 varied images
@@ -102,9 +103,36 @@ Build a local PoC to detect Proton logo (`proton_logo`) in videos, compute scree
 - README with setup, training and run instructions
 - `requirements.txt` + Docker for reproducible run
 
-## 11. Acceptance criteria (MVP)
+## 11. Testing
+Testing is incremental: every epic is closed only when its tests are green.
+The suite is orchestrated from the `Makefile` and lives in `tests/` with pytest
+markers per epic (`epic2`..`epic6`) plus `smoke` for fast integration checks.
+
+| Epic | Make target | Coverage |
+| --- | --- | --- |
+| 2 - Dataset & labeling | `make test-epic2` | `allocate`, label parsing, manifest dedupe, split without overlap, `data.yaml` |
+| 3 - Model & training | `make test-epic3` | dataset loading, `models/best.pt` exists, single-image inference schema |
+| 4 - Video + metrics + DB | `make test-epic4` | `logo_time_sec`, `percentage`, crop paths, SQLite FK and rows |
+| 5 - Frontend | `make test-epic5` | app imports/runs headless |
+| 6 - Polish & Docker | `make test-epic6` | end-to-end with a real video (issue #21) |
+
+Commands:
+```bash
+make install      # runtime + dev dependencies (pytest)
+make test         # full suite
+make test-unit    # everything not marked smoke
+make test-smoke   # fast integration checks
+make check        # compileall + full suite
+```
+
+Unit tests must not hit the network nor require the real dataset: use `tmp_path`
+and small synthetic files. Tests that need training weights, videos or ffmpeg are
+marked with their epic and skipped when the artifact is missing.
+
+## 12. Acceptance criteria (MVP)
 - Logo detected with bbox, class name and confidence
 - `logo_time_sec` and `percentage` correct for a test video
 - Crops saved and linked in the DB
 - Report and history visible in the local UI
 - Full pipeline runs locally following the README steps
+- `make check` passes before closing any issue

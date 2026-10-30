@@ -32,9 +32,11 @@
 - Regenerar QA con `python scripts/qa_images.py` cuando cambie el dataset.
 
 ## Verificación mínima
-- `python -m py_compile scripts/*.py` tras tocar scripts.
+- `make check` (compileall + pytest) antes de cerrar cualquier issue que toque código.
+- `make test-epicN` para la épica en curso (ej. `make test-epic2`).
 - `python scripts/check_labels.py --fill-empty` tras etiquetar.
 - No cerrar un issue sin comprobar que los archivos referenciados existen.
+- Añadir tests con el marcador de su épica (`@pytest.mark.epicN`) al implementar cada issue.
 
 ## Entorno
 - Windows + bash, Python 3.14.

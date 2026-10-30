@@ -125,11 +125,14 @@ LogoExposure-Tracker/
 ├── notebooks/
 ├── scripts/{collect_images.py,extract_frames.py,qa_images.py,prepare_labeling.py,check_labels.py,split_dataset.py,train,process}
 ├── src/{detect,video,db}
+├── tests/{test_*.py,conftest.py}
 ├── Dockerfile
 ├── docker-compose.yml
+├── Makefile
 ├── labelimg_instructions.md
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── requirements-dev.txt
 ```
 
 ### Collecting images (#4)
@@ -153,21 +156,25 @@ Creates `data/dataset/images/{train,val,test}`, `data/dataset/labels/{train,val,
 The split is stratified by positive/background with seed 42. Run training from the
 repo root so the relative `path: data/dataset` in `data.yaml` resolves correctly.
 
-### Training environment (#7)
+## 9. Testing
+Tests are orchestrated through the Makefile and run after each epic:
+
 ```bash
-python -m pip install -r requirements.txt
-python scripts/train/setup_env.py
+make install      # runtime + dev dependencies (pytest)
+make test         # full suite
+make test-unit    # everything not marked smoke
+make test-smoke   # fast integration checks
+make check        # compileall + full suite (required before closing an issue)
 ```
 
-Checks Python/Ultralytics/PyTorch/OpenCV versions, validates `data/dataset/data.yaml`
-and downloads `models/yolov8n.pt` if missing (weights are gitignored). Add `--smoke`
-to run one inference with the base model, or `--no-download` to fail instead of
-downloading.
+Tests live in `tests/` and use pytest markers per epic (`epic2`..`epic6`), so
+`make test-epic2` runs only the dataset/labeling checks. Tests use synthetic
+fixtures, never the network or the real dataset.
 
-## 9. Philosophy
+## 10. Philosophy
 - **Local-first** | **Open-Source** | **Privacy by Design** | **Earned Media Focus** | **Faithful to assignment**
 
-## 10. Documentation
+## 11. Documentation
 - [`docs/SPECS.md`](docs/SPECS.md)
 - [`docs/ISSUES_DESIGN.md`](docs/ISSUES_DESIGN.md)
 - [`docs/DATASET_SOURCES.md`](docs/DATASET_SOURCES.md)
