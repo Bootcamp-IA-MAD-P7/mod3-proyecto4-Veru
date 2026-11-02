@@ -33,7 +33,7 @@
 - [x] #15 [UI] App base
 - [x] #16 [UI] Upload + run analysis
 - [x] #17 [UI] Report + gallery
-- [x] #18 [UI] History
+- [ ] #18 [UI] History
 
 ### EPIC 6: POLISH & DOCKER
 - [ ] #19 [DOCKER] Dockerfile + compose
