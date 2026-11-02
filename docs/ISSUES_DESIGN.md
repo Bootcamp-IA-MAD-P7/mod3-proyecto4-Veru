@@ -27,7 +27,7 @@
 - [x] #11 [VIDEO] frames/fps/time/%
 - [x] #12 [VIDEO] crops saving
 - [x] #13 [DB] SQLite schema (videos+detections)
-- [ ] #14 [DB] Integrate save
+- [x] #14 [DB] Integrate save
 
 ### EPIC 5: FRONTEND
 - [ ] #15 [UI] App base
