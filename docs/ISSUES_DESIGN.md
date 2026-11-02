@@ -36,9 +36,9 @@
 - [x] #18 [UI] History
 
 ### EPIC 6: POLISH & DOCKER
-- [ ] #19 [DOCKER] Dockerfile + compose
-- [ ] #20 [DOCS] Polish README + assets
-- [ ] #21 [TEST] End-to-end with real video
+- [x] #19 [DOCKER] Dockerfile + compose
+- [x] #20 [DOCS] Polish README + assets
+- [x] #21 [TEST] End-to-end with real video
 - [ ] #22 [CLEAN] Final cleanup
 
 ### EPIC 7: BONUS
