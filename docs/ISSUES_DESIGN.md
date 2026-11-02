@@ -38,6 +38,7 @@
 ### EPIC 6: POLISH & DOCKER
 - [x] #19 [DOCKER] Dockerfile + compose
 - [ ] #20 [DOCS] Polish README + assets
+- [x] #20 [DOCS] Polish README + assets
 - [ ] #21 [TEST] End-to-end with real video
 - [ ] #22 [CLEAN] Final cleanup
 
