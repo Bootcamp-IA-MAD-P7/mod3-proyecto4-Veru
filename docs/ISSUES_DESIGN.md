@@ -40,8 +40,7 @@
 - [ ] #20 [DOCS] Polish README + assets
 - [x] #20 [DOCS] Polish README + assets
 - [x] #21 [TEST] End-to-end with real video
-- [ ] #21 [TEST] End-to-end with real video
-- [ ] #22 [CLEAN] Final cleanup
+- [x] #22 [CLEAN] Final cleanup
 
 ### EPIC 7: BONUS
 - [ ] #23 [BONUS] yt-dlp PeerTube URL
