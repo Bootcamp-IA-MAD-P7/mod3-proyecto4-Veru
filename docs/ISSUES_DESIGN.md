@@ -23,9 +23,9 @@
 - [x] #9 [MODEL] Validate & copy best.pt to models/
 
 ### EPIC 4: VIDEO + METRICS + DB
-- [ ] #10 [VIDEO] process_video.py core
-- [ ] #11 [VIDEO] frames/fps/time/%
-- [ ] #12 [VIDEO] crops saving
+- [x] #10 [VIDEO] process_video.py core
+- [x] #11 [VIDEO] frames/fps/time/%
+- [x] #12 [VIDEO] crops saving
 - [ ] #13 [DB] SQLite schema (videos+detections)
 - [ ] #14 [DB] Integrate save
 
