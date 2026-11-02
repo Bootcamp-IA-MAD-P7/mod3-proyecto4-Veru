@@ -102,3 +102,7 @@ def process_video(
         "percentage": percentage,
         "detections": detections_list,
     }
+
+
+# Re-export metrics for convenience
+from .metrics import compute_duration, compute_screen_time, compute_percentage  # noqa: F401
