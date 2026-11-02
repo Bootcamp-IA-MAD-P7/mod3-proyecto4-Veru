@@ -30,7 +30,7 @@
 - [x] #14 [DB] Integrate save
 
 ### EPIC 5: FRONTEND
-- [ ] #15 [UI] App base
+- [x] #15 [UI] App base
 - [ ] #16 [UI] Upload + run analysis
 - [ ] #17 [UI] Report + gallery
 - [ ] #18 [UI] History
