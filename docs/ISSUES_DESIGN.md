@@ -31,7 +31,7 @@
 
 ### EPIC 5: FRONTEND
 - [x] #15 [UI] App base
-- [ ] #16 [UI] Upload + run analysis
+- [x] #16 [UI] Upload + run analysis
 - [ ] #17 [UI] Report + gallery
 - [ ] #18 [UI] History
 
