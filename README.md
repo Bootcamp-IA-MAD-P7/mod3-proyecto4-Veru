@@ -211,3 +211,15 @@ fixtures, never the network or the real dataset.
 - [`docs/DATASET_SOURCES.md`](docs/DATASET_SOURCES.md)
 
 **Project:** `LogoExposure-Tracker` | **Target:** `Proton` | **Class:** `proton_logo` | **Focus:** *Earned Media | Share of Screen | Video Brand Exposure*
+
+## Docker
+```bash
+docker compose up --build
+# open http://localhost:8501
+```
+
+## Streamlit
+```bash
+export PYTHONPATH=.
+streamlit run app/Home.py
+```
