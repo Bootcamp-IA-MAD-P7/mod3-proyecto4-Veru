@@ -32,8 +32,8 @@
 ### EPIC 5: FRONTEND
 - [x] #15 [UI] App base
 - [x] #16 [UI] Upload + run analysis
-- [ ] #17 [UI] Report + gallery
-- [ ] #18 [UI] History
+- [x] #17 [UI] Report + gallery
+- [x] #18 [UI] History
 
 ### EPIC 6: POLISH & DOCKER
 - [ ] #19 [DOCKER] Dockerfile + compose
